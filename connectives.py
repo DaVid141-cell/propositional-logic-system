@@ -10,7 +10,7 @@ def evaluate_expression(expression, values_dict):
     
     # step 1: convert basic logical symbols
     expr = expr.replace("^", " and ")
-    expr = expr.replace("&", " or ")
+    expr = expr.replace("|", " or ")
     expr = expr.replace("~", " not ")
 
 
