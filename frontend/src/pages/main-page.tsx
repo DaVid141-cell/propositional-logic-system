@@ -1,11 +1,10 @@
-
-import { MainLayout } from "../components/layout/mainLayout";
 import {BoxFrame} from "../components/ui/box-frame";
 import { BoxHeader } from "../components/ui/box-header";
 import { BoxMain } from "../components/ui/box-main";
 import { Input } from "../components/ui/input";
 import { Button } from "../components/ui/button";
 import { BoxFooter } from "../components/ui/box-footer";
+import { MainLayout } from "../components/layout/MainLayout";
 
 export default function MainPage() {
   return (
