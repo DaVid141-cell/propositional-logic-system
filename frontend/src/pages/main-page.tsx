@@ -1,11 +1,9 @@
 import {BoxFrame} from "../components/ui/box-frame";
 import { BoxHeader } from "../components/ui/box-header";
 import { BoxMain } from "../components/ui/box-main";
-import { Input } from "../components/ui/input";
-import { Button } from "../components/ui/button";
 import { BoxFooter } from "../components/ui/box-footer";
 import { MainLayout } from "../components/layout/MainLayout";
-import { InputStyle } from "../components/ui/input-sytle";
+import { BoxMainContentFirst } from "../components/ui/box-main-content";
 
 export default function MainPage() {
   return (
@@ -14,52 +12,7 @@ export default function MainPage() {
       <BoxFrame className="h-full justify-self-center">
         <BoxHeader title="InputForm.md" />
           <BoxMain className="pt-20">
-            <div className="">
-              <form>
-                <div className="">
-                  <label>C:\Logical\Statement{'>'} </label>
-                   <span className="animate-pulse">{'[ '}</span>
-                      <input className="w-60 text-center animate-pulse bg-transparent outline-none" placeholder=" Enter logical statement "/>
-                    <span className="animate-pulse">{' ]'}</span>
-                </div>
-                
-                <div className="mt-4">
-                  <label className="">C:\Solve\Using\Given\Values{'>'} </label>
-                  
-                  <div className="">
-                    
-                    <div className=" ">
-                      <label className="mr-2">├─C:\P{'>'} </label>
-                        <span className="animate-pulse">{'[ '}</span>
-                          <input className="w-28 text-center animate-pulse bg-transparent outline-none" placeholder=" Enter T/F "/>
-                        <span className="animate-pulse">{' ]'}</span>
-                    </div>
-
-                    <div className=""> 
-                      <label className="mr-2">│ └─C:\Q{'>'} </label>
-                      <span className="animate-pulse">{'[  '}</span>
-                          <input className="w-28 text-center animate-pulse bg-transparent outline-none" placeholder=" Enter T/F "/>
-                        <span className="animate-pulse">{'  ]'}</span>
-                    </div>
-
-                    <div className="">
-                      <label className="mr-2">│    <span className="ml-4">└─C:\R{'>'}</span> </label>
-                      <span className="animate-pulse">{'[ '}</span>
-                        <input className="w-28 text-center animate-pulse bg-transparent outline-none" placeholder="Enter T/F"/>
-                      <span className="animate-pulse">{' ]'}</span>
-                          
-                        
-                    </div>
-                  </div>
-                </div>
-
-                <div className="flex h-10 mt-6 mr-8 justify-end">
-                  <button className="p-2 btn-underline cursor-pointer" type="submit">
-                    {'>'}{'> '}Submit
-                  </button>
-                </div>
-              </form>  
-            </div>
+            <BoxMainContentFirst/>
           </BoxMain>
 
           <BoxFooter/>
