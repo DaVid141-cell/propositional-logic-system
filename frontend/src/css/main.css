@@ -152,3 +152,11 @@
 .btn-underline:hover::after {
   width: 100%;
 }
+
+
+input {
+  caret-color: white;
+  caret-shape: block;
+}
+
+
