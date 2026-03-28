@@ -6,6 +6,7 @@ interface TruthTableRow {
 }
 
 export interface AnalyzeResult {
+    truth_table: any;
     expression: string;
     truthTable: TruthTableRow[];
     variables: string[];
@@ -37,13 +38,41 @@ export function BoxMainContentInput({ onAnalyze, onSolve }: Props) {
 
     const pulse = (val: string) => val === "" ? "animate-pulse" : "";
 
-    const handleSubmit = async (e: React.FormEvent) => {
+    const handleAnalyzeOnly = async (e: React.FormEvent) => {
         e.preventDefault();
         setError("");
 
-        if (!statement) {
+        if (!statement.trim()) {
             setError("Please enter a logical statement.");
-            setLoading(false);
+            return;
+        }
+        setLoading(true);
+        try {
+            const analyzeResponse = await fetch(`${API_URL}/api/analyze`, {
+                method: "POST",
+                headers: {"Content-Type": "application/json"},
+                body: JSON.stringify({ expression: statement }),
+            });
+            if (!analyzeResponse.ok) throw new Error("Failed to analyze statement.");
+            onAnalyze(await analyzeResponse.json());
+        } catch (err: any) {
+            setError(err.message || "Something went wrong, Please Try Again later.");
+            } finally {
+                setLoading(false);
+            }
+    }
+
+    const handleSolveWithValues = async (e: React.FormEvent) => {
+        e.preventDefault();
+        setError("");
+
+        if (!statement.trim().toLowerCase()) {
+            setError("Please enter a logical statement.");
+            return
+        }
+        
+        if (p === "" && q === "" && r === "") {
+            setError("Please enter at least one variable value.");
             return;
         }
 
@@ -51,27 +80,27 @@ export function BoxMainContentInput({ onAnalyze, onSolve }: Props) {
         try {
             const analyzeResponse = await fetch(`${API_URL}/api/analyze`, {
                 method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({expression: statement }),
+                headers: {"Content-Type": "application/json"},
+                body: JSON.stringify({expression: statement.toLowerCase()}),
             });
             if (!analyzeResponse.ok) throw new Error("Failed to analyze statement.");
             onAnalyze(await analyzeResponse.json());
 
-            const hasValues = p !== "" || q !== "" || r !== "";
+            const hasValues = p != "" || q != "" || r != "";
             if (hasValues) {
                 const values: Record<string, boolean> = {};
-                if (p !== "") values["p"] = p.toUpperCase() === "T";
-                if (q !== "") values["q"] = q.toUpperCase() === "T";
-                if (r !== "") values["r"] = r.toUpperCase() === "T";
-
+                if (p != "") values["p"] = p.toUpperCase() === "T";
+                if (q != "") values["q"] = q.toUpperCase() === "T";
+                if (r != "") values["r"] = r.toUpperCase() === "T";
+                
                 const solveResponse = await fetch(`${API_URL}/api/solve`, {
                     method: "POST",
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify({ expression: statement, values }),
+                    headers: {"Content-Type": "application/json"},
+                    body: JSON.stringify({expression: statement.toLowerCase(), values}),
                 });
                 if (!solveResponse.ok) {
                     const errData = await solveResponse.json();
-                    throw new Error(errData.detail || "Failed to solve statement.");
+                    throw new Error(errData.detail || "Failed to solve expression.");
                 }
                 onSolve(await solveResponse.json());
             }
@@ -81,11 +110,12 @@ export function BoxMainContentInput({ onAnalyze, onSolve }: Props) {
             setLoading(false);
         }
     };
+    
 
 
     return (
         <div>
-            <form onSubmit={handleSubmit}>
+            <form>
                 <div className="">
                     <label>C:\Logical\Statement{'>'} </label>
                     <span className={pulse(statement)}>{'[ '}</span>
@@ -142,11 +172,22 @@ export function BoxMainContentInput({ onAnalyze, onSolve }: Props) {
                 <div className="flex h-10 mt-6 mr-8 justify-end">
                   <button 
                     className="p-2 btn-underline cursor-pointer" 
-                    type="submit"
+                    onClick={handleAnalyzeOnly}
+                    type="button"
                     disabled={loading}
 
                     >
-                    {loading ? ">> Processing..." : ">> Submit"}
+                    {loading ? ">> Processing..." : ">> Get Truth Table"}
+                  </button>
+
+                  <button 
+                    className="p-2 btn-underline cursor-pointer"
+                    onClick={handleSolveWithValues} 
+                    type="button"
+                    disabled={loading}
+
+                    >
+                    {loading ? ">> Processing..." : ">> Solve with Values"}
                   </button>
                 </div>
           </form>  
