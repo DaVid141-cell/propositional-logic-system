@@ -17,7 +17,7 @@ export default function MainPage() {
 
       <InputForm onAnalyze={setAnalyzeData} onSolve={setSolveData} />
 
-      <Output analyzeData={analyzeData} />
+      <Output analyzeDataOutput={analyzeData} solveDataOutput={solveData} />
       
 
       <BoxFrame className="row-span-4 h-320">
