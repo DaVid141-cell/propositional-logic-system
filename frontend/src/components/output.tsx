@@ -1,20 +1,28 @@
 import { BoxFrame } from "./ui/box-frame";
 import { BoxHeader } from "./ui/box-header";
 import { BoxMain } from "./ui/box-main";
-import type { AnalyzeResult } from "./ui/box-main-content-input";
+import type { AnalyzeResult, SolveResult } from "./ui/box-main-content-input";
+import { BoxMainContentOutput } from "./ui/box-main-content-output";
 
-export default function Output({analyzeData}: { analyzeData: AnalyzeResult | null }) {
+interface Props {
+  analyzeDataOutput: AnalyzeResult | null;
+  solveDataOutput: SolveResult | null;
+}
+
+
+export default function Output({analyzeDataOutput, solveDataOutput}: Props) {
     return (
-        <BoxFrame className="h-200 justify-self-center">
-            <BoxHeader title="Truth Table" />
+        <BoxFrame className=" justify-self-center">
+            <BoxHeader title="OutPut.md" />
                 <BoxMain>
-                   {analyzeData ? (
-                    <p className="p-4 text-sm font-mono">Ready to render results...</p>
-                  ) : (
-                    <p className="p-4 text-sm opacity-40">
-                      Results will appear here after you submit.
+                 { analyzeDataOutput ? (
+                    <BoxMainContentOutput analyzeData={analyzeDataOutput} solveData={solveDataOutput}/>
+                 ) : (
+                    <p>
+                        No statement analyzed yet. Please enter a logical statement and click "Analyze" to see the truth table and analysis here.
                     </p>
-                  )}
+                 )
+                }
             </BoxMain>
         </BoxFrame>
     )
