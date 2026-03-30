@@ -12,14 +12,14 @@ interface Props {
 
 export default function Output({analyzeDataOutput, solveDataOutput}: Props) {
     return (
-        <BoxFrame className=" justify-self-center">
+        <BoxFrame className="justify-self-center">
             <BoxHeader title="OutPut.md" />
                 <BoxMain>
                  { analyzeDataOutput ? (
                     <BoxMainContentOutput analyzeData={analyzeDataOutput} solveData={solveDataOutput}/>
                  ) : (
                     <p>
-                        No statement analyzed yet. Please enter a logical statement and click "Analyze" to see the truth table and analysis here.
+                        No statement analyzed yet. Please enter a logical statement and choose oen of the button you want to try to see the truth table and analysis here.
                     </p>
                  )
                 }
