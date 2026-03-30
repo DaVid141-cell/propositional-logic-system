@@ -32,7 +32,9 @@ export function BoxMainContentInput({ onAnalyze, onSolve }: Props) {
     const [p, setP] = useState("");
     const [q, setQ] = useState("");
     const [r, setR] = useState("");
-    const [loading, setLoading] = useState(false);
+    
+    const [loadingAnalyze, setLoadingAnalyze] = useState(false);
+    const [loadingSolve, setLoadingSolve] = useState(false);
     const [error, setError] = useState("");
 
 
@@ -46,7 +48,7 @@ export function BoxMainContentInput({ onAnalyze, onSolve }: Props) {
             setError("Please enter a logical statement.");
             return;
         }
-        setLoading(true);
+        setLoadingAnalyze(true);
         try {
             const analyzeResponse = await fetch(`${API_URL}/api/analyze`, {
                 method: "POST",
@@ -58,7 +60,7 @@ export function BoxMainContentInput({ onAnalyze, onSolve }: Props) {
         } catch (err: any) {
             setError(err.message || "Something went wrong, Please Try Again later.");
             } finally {
-                setLoading(false);
+                setLoadingAnalyze(false);
             }
     }
 
@@ -76,7 +78,7 @@ export function BoxMainContentInput({ onAnalyze, onSolve }: Props) {
             return;
         }
 
-        setLoading(true);
+        setLoadingSolve(true);
         try {
             const analyzeResponse = await fetch(`${API_URL}/api/analyze`, {
                 method: "POST",
@@ -107,7 +109,7 @@ export function BoxMainContentInput({ onAnalyze, onSolve }: Props) {
         } catch (err: any) {
             setError(err.message || "Something went wrong, Please Try Again later.");
         } finally {
-            setLoading(false);
+            setLoadingSolve(false);
         }
     };
     
@@ -134,7 +136,7 @@ export function BoxMainContentInput({ onAnalyze, onSolve }: Props) {
                         <div className=" ">
                             <label className="mr-2">├─C:\P{'>'} </label>
                             <span className={pulse(p)}>{'[ '}</span>
-                                <select className="bg-foreground text-center" value={p} onChange={(e) => setP(e.target.value)}>
+                                <select className={`bg-foreground text-center ${pulse(p)}`} value={p} onChange={(e) => setP(e.target.value)}>
                                     <option value="">Select</option>
                                     <option value="T">T</option>
                                     <option value="F">F</option>
@@ -145,7 +147,7 @@ export function BoxMainContentInput({ onAnalyze, onSolve }: Props) {
                         <div className=""> 
                             <label className="mr-2">│ └─C:\Q{'>'} </label>
                             <span className={pulse(q)}>{'[  '}</span>
-                                <select className="bg-foreground text-center " value={q} onChange={(e) => setQ(e.target.value)}>
+                                <select className={`bg-foreground text-center ${pulse(q)}`} value={q} onChange={(e) => setQ(e.target.value)}>
                                     <option value="">Select</option>
                                     <option value="T">T</option>
                                     <option value="F">F</option>
@@ -156,7 +158,7 @@ export function BoxMainContentInput({ onAnalyze, onSolve }: Props) {
                         <div className="">
                             <label className="mr-2">│    <span className="ml-4">└─C:\R{'>'}</span> </label>
                             <span className={pulse(r)}>{'[ '}</span>
-                                <select className="bg-foreground text-center" value={r} onChange={(e) => setR(e.target.value)}>
+                                <select className={`bg-foreground text-center ${pulse(r)}`} value={r} onChange={(e) => setR(e.target.value)}>
                                     <option value="">Select</option>
                                     <option value="T">T</option>
                                     <option value="F">F</option>
@@ -174,20 +176,20 @@ export function BoxMainContentInput({ onAnalyze, onSolve }: Props) {
                     className="p-2 btn-underline cursor-pointer" 
                     onClick={handleAnalyzeOnly}
                     type="button"
-                    disabled={loading}
+                    disabled={loadingAnalyze}
 
                     >
-                    {loading ? ">> Processing..." : ">> Get Truth Table"}
+                    {loadingAnalyze ? ">> Processing..." : ">> Get Truth Table"}
                   </button>
 
                   <button 
                     className="p-2 btn-underline cursor-pointer"
                     onClick={handleSolveWithValues} 
                     type="button"
-                    disabled={loading}
+                    disabled={loadingSolve}
 
                     >
-                    {loading ? ">> Processing..." : ">> Solve with Values"}
+                    {loadingSolve ? ">> Processing..." : ">> Solve with Values"}
                   </button>
                 </div>
           </form>  
