@@ -1,9 +1,33 @@
+import { useState } from "react";
+import { Link, NavLink } from "react-router-dom";
+
 export function Navbar() {
+  const [active, setActive] = useState("") 
+
+
   return (
-    <nav className="p-4 flex justify-center">
+    <nav className="p-4 flex justify-center sticky top-0 z-50 ">
         <div className="w-120 h-20 flex items-center justify-evenly rounded-full bg-white/25 backdrop-blur-md border border-white/30 shadow-lg">
-            <img src="/weblogoF.png" alt="Logo" className="w-[240px]"/>
-            <a href="../pages/about.tsx" className="font-bold">ABOUT</a>
+            <NavLink to="/" end>
+              {({ isActive }) => (
+                <img 
+                  src="/weblogoF.png" 
+                  alt="Logo" 
+                  className={`w-[240px] ${isActive ? "opacity-100" : "opacity-70"}`}
+                />
+              )}
+            </NavLink>
+
+            <NavLink 
+              to="/about"
+              className={({ isActive }) =>
+                `text-foreground font-bold transition btn-underline  ${
+                  isActive ? "active" : "text-foreground"
+                }`
+              }
+            >
+              ABOUT
+            </NavLink>
         </div>
     </nav>
   );
