@@ -153,6 +153,11 @@
   width: 100%;
 }
 
+.btn-underline.active::after {
+  width: 100%;
+}
+
+
 
 input {
   caret-color: white;
