@@ -15,7 +15,11 @@ export function Guide () {
             
             <PopoverContent className="w-200 bg-accent-foreground text-background">
                 <PopoverHeader>
-                <PopoverTitle>Guides about the Propositional logic and Truth Table Calculation</PopoverTitle>
+                <PopoverTitle>
+                    Guides about the Propositional logic and Truth Table Calculation
+                    <span className="text-red-500"><br/>Please read carefully with the Accordion details below. </span>
+
+                </PopoverTitle>
                 <PopoverDescription>
                     <GuideContent/>
 
