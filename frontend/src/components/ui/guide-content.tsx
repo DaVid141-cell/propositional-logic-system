@@ -51,7 +51,7 @@ const contents = [
 
 export function GuideContent () {
     return (
-        <Accordion type="multiple" className="w-full" defaultValue={["notifications"]}>
+        <Accordion type="single" collapsible className="w-full">
             {contents.map((item) => (
                 <AccordionItem key={item.value} value={item.value}>
                     <AccordionTrigger className="font-bold ">{item.title}</AccordionTrigger>
