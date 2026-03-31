@@ -1,9 +1,12 @@
-export default function MainPage() {
+import { AboutLayout } from "../components/layout/aboutLayout";
+import { AboutContent } from "../components/ui/about-content";
+import { FeedbackForm } from "../components/ui/feedback-form";
+
+export default function AboutPage() {
     return (
-        <div className="main-page">
-            <h1 className="text-3xl font-bold underline">
-                Hello world!
-            </h1>
-        </div>
+        <AboutLayout>
+            <AboutContent/>
+            <FeedbackForm/>
+        </AboutLayout>
     )
 }
