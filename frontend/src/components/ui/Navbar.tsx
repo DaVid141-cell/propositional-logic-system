@@ -1,10 +1,8 @@
-import { useState } from "react";
-import { Link, NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 export function Navbar() {
-  const [active, setActive] = useState("") 
 
-
+ 
   return (
     <nav className="p-4 flex justify-center sticky top-0 z-50 ">
         <div className="w-120 h-20 flex items-center justify-evenly rounded-full bg-white/25 backdrop-blur-md border border-white/30 shadow-lg">

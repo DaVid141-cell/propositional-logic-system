@@ -10,9 +10,9 @@ export function PopUpArrow({open}: Props) {
                 viewBox="0 0 24 24" 
                 fill="none" 
                 stroke="currentColor" 
-                stroke-width="1.25" 
-                stroke-linecap="round" 
-                stroke-linejoin="round" 
+                strokeWidth="1.25" 
+                strokeLinecap="round" 
+                strokeLinejoin="round" 
                 className={`transition-transform duration-300 ${open ? "rotate-180" : "rotate-0"}`}
                 >
                 <path d="m7 6 5 5 5-5"/>

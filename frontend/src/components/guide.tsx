@@ -20,11 +20,8 @@ export function Guide () {
                     <span className="text-red-500"><br/>Please read carefully with the Accordion details below. </span>
 
                 </PopoverTitle>
-                <PopoverDescription>
-                    <GuideContent/>
-
-                </PopoverDescription>
                 </PopoverHeader>
+                <GuideContent/>
             </PopoverContent>
 
         </Popover>

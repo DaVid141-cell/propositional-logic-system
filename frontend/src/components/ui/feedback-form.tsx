@@ -83,8 +83,6 @@ export function FeedbackForm () {
                     </div>
                     
                 </BoxMain>
-            
-            <BoxFooter/>
         </BoxFrame>
     )
 }
