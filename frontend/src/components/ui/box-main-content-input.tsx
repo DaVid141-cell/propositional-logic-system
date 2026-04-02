@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { API_URL } from "../../lib/api";
 
 interface TruthTableRow {
@@ -37,12 +37,21 @@ export function BoxMainContentInput({ onAnalyze, onSolve }: Props) {
     const [loadingSolve, setLoadingSolve] = useState(false);
     const [error, setError] = useState("");
 
+    // for rate limiting on request so that it cant be spam
+    const lastCallRef = useRef<number>(0);
+    const DEBOUNCE_MS = 2000; // 2 seconds between calls
+
 
     const pulse = (val: string) => val === "" ? "animate-pulse" : "";
 
     const handleAnalyzeOnly = async (e: React.FormEvent) => {
+        const now = Date.now();
+        if (now - lastCallRef.current < DEBOUNCE_MS) return; // ignore if too soon
+        lastCallRef.current = now;
+
         e.preventDefault();
         setError("");
+
 
         if (!statement.trim()) {
             setError("Please enter a logical statement.");
@@ -65,6 +74,10 @@ export function BoxMainContentInput({ onAnalyze, onSolve }: Props) {
     }
 
     const handleSolveWithValues = async (e: React.FormEvent) => {
+        const now = Date.now();
+        if (now - lastCallRef.current < DEBOUNCE_MS) return; // ignore if too soon
+        lastCallRef.current = now;
+
         e.preventDefault();
         setError("");
 
