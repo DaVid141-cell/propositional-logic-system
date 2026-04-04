@@ -2,7 +2,7 @@ import { useRef, useState } from "react";
 import { API_URL } from "../../lib/api";
 
 export interface TruthTableRow {
-    values: Record<string, boolean>;
+    values: Record<string, string>;
 }
 
 export interface AnalyzeResult {

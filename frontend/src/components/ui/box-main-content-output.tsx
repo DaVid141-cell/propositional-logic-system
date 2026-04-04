@@ -29,9 +29,9 @@ export function BoxMainContentOutput({ analyzeData, solveData} : Props) {
                 <tr className="border-b last:border-b-0  hover:bg-neutral-700 transition-colors" key={i}>
                   {header.map((h) => (
                     <td key={h} className="border-r last:border-r-0  px-3 py-1 text-center">
-                      <span className={row.values[h] ? "text-green-400" : "text-red-500"}>
-                        {row.values[h] ? "T" : "F"}
-                        </span>
+                      <span className={row.values[h] === "T" ? "text-green-400" : "text-red-500"}>
+                          {row.values[h]}
+                      </span>
                     </td>
                   ))}
                 </tr>
