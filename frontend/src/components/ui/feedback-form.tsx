@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { BoxFooter } from "./box-footer";
 import { BoxFrame } from "./box-frame";
 import { BoxHeader } from "./box-header";
 import { BoxMain } from "./box-main";
