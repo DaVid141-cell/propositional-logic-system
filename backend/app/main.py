@@ -5,7 +5,7 @@ from app.routes.logic import router
 app = FastAPI(title="Propositional Logic System")
 origins = [
     "http://localhost:5173",
-    "https://truthtable-analyzer.vercel.app/",
+    "https://truthtable-analyzer.vercel.app",
 ]
 
 app.add_middleware(
