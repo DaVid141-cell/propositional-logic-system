@@ -1,14 +1,13 @@
 import { useRef, useState } from "react";
 import { API_URL } from "../../lib/api";
 
-interface TruthTableRow {
+export interface TruthTableRow {
     values: Record<string, boolean>;
 }
 
 export interface AnalyzeResult {
-    truth_table: any;
+    truth_table: TruthTableRow[];
     expression: string;
-    truthTable: TruthTableRow[];
     variables: string[];
     analysis: string;
 }
