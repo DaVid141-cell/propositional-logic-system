@@ -74,7 +74,7 @@ export function FeedbackForm () {
                                     disabled={loading}
 
                                     >
-                                        {loading ? ">> Submitting..." : ">>Submit feedback"}
+                                        {loading ? "> Submitting..." : "> Submit feedback <"}
                                 </button>
 
                             </div>

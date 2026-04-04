@@ -192,7 +192,7 @@ export function BoxMainContentInput({ onAnalyze, onSolve }: Props) {
                     disabled={loadingAnalyze}
 
                     >
-                    {loadingAnalyze ? ">> Processing..." : ">> Get Truth Table"}
+                    {loadingAnalyze ? "> Processing..." : "> Get Truth Table <"}
                   </button>
 
                   <button 
@@ -202,7 +202,7 @@ export function BoxMainContentInput({ onAnalyze, onSolve }: Props) {
                     disabled={loadingSolve}
 
                     >
-                    {loadingSolve ? ">> Processing..." : ">> Solve with Values"}
+                    {loadingSolve ? "> Processing..." : "> Solve with Values <"}
                   </button>
                 </div>
           </form>  
