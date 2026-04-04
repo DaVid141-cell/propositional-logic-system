@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { GuideContent } from "./ui/guide-content";
 import { PopUpArrow } from "./ui/Pop-up-arrow";
-import { Popover, PopoverContent, PopoverDescription, PopoverHeader, PopoverTitle, PopoverTrigger } from "./ui/popover";
+import { Popover, PopoverContent, PopoverHeader, PopoverTitle, PopoverTrigger } from "./ui/popover";
 
 export function Guide () {
     const [open, setOpen] = useState(false);
