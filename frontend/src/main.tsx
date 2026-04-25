@@ -11,8 +11,9 @@ createRoot(document.getElementById('root')!).render(
       <Routes>
         <Route path="/" element={<MainPage />} />
         <Route path="/about" element={<AboutPage />} />
-        <Analytics/>
+        
       </Routes>
     </BrowserRouter>
+    <Analytics/>
   </StrictMode>,
 )
